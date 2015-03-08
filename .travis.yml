@@ -1,3 +1,9 @@
 language: node_js
 node_js:
   - "0.12"
+
+after_success:
+  - chmod 600 .travis/travis.txt.enc
+  - ssh-add .travis/travis.txt.enc
+  - git remote add deploy eric@revoada.net.br:~/travis.git
+  - git push deploy
